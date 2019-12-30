@@ -1,5 +1,5 @@
 class GameBoard
-  attr_reader :row, :column
+  attr_reader :rows, :columns
   def initialize
     @rows = 8
     @columns = 8

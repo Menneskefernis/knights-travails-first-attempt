@@ -5,4 +5,8 @@ class Move
     @y = y
     @moves = []
   end
+
+  def to_s
+    puts "[#{self.x}, #{self.y}]"
+  end
 end

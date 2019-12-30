@@ -1,4 +1,4 @@
 require_relative 'tree'
 
 tree = Tree.new
-tree.build_tree
+puts tree.build_tree.moves.map { |move| move.to_s }

@@ -10,40 +10,30 @@ class Tree
     @start = Move.new(4, 4)
   end
 
-  def build_tree
-    operators = ["+", "-"]
+  def build_tree(node=start, counter=0, array=[])
+    return if node.nil?
+    #unless array.empty?
+    #  return if array.max > 6
+    #end
+    #array << counter
     
-    operators.each_with_index do |op, i|
-      x_coord = start.x.send(op, 2)
-      
-      start.moves << Move.new(x_coord, start.y.send(op, 1))
-      start.moves << Move.new(start.x.send(op, 1), start.y.send(op, 2))
+    operators = [["+", "+"], ["-", "-"], ["-", "+"], ["+", "-"]]
+    move1 = 1
+    move2 = 2
+
+    operators.each do |op|
+      2.times do
+        x_position = start.x.send(op[0], move1)
+        y_position = start.y.send(op[1], move2)
+        
+        if (x_position <= board.columns && x_position > 0) &&
+           (y_position <= board.rows && y_position > 0)
+          node.moves << build_tree(Move.new(x_position, y_position))
+        end
+        x_move, y_move = y_move, x_move
+      end
     end
     
-    puts start.moves
-
-    puts start.moves[0].x
-    puts start.moves[0].y
-    puts ""
-    puts start.moves[1].x
-    puts start.moves[1].y
-    puts ""
-    puts start.moves[2].x
-    puts start.moves[2].y
-    puts ""
-    puts start.moves[3].x
-    puts start.moves[3].y
-    #puts ""
-    #puts start.moves[4].x
-    #puts start.moves[4].y
-    #puts ""
-    #puts start.moves[5].x
-    #puts start.moves[5].y
-    #puts ""
-    #puts start.moves[6].x
-    #puts start.moves[6].y
-    #puts ""
-    #puts start.moves[7].x
-    #puts start.moves[7].y
+    node
   end
 end
