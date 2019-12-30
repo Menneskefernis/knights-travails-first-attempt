@@ -1,5 +1,7 @@
 class GameBoard
-  @row = 8
-  @column = 8
-  @knight_position = [0, 0]
+  attr_reader :row, :column
+  def initialize
+    @rows = 8
+    @columns = 8
+  end
 end
